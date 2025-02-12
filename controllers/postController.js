@@ -5,7 +5,23 @@ const arrayPosts = require(`../data/posts.js`)
 //Index
 
 function index (req,res){
-    res.send(`Lista dei post`)
+    //res.send(`Lista dei post`)
+
+    //Logica CRUD per l'index per la restituzione della lista dei post in formato JSON
+
+    let filteredPost = arrayPosts
+
+    //In caso che nella richiesta ci fosse un filtro, si filtrano i post con un if
+
+    if (req.query.tags){
+        filteredPost = arrayPosts.filter(
+            element => element.tags.includes (req.query.tags)
+        )
+    }
+
+    //restituzione in json
+
+    res.json(filteredPost);
   };
   
   //Show
