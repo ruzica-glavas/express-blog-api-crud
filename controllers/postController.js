@@ -11,7 +11,7 @@ function index (req,res){
 
     let filteredPost = arrayPosts
 
-    //In caso che nella richiesta ci fosse un filtro, si filtrano i post con un if
+    //In caso che nella richiesta ci fosse un filtro, si filtrano i post con un if. Il filtro in questo caso é il tag
 
     if (req.query.tags){
         filteredPost = arrayPosts.filter(
@@ -27,10 +27,29 @@ function index (req,res){
   //Show
   
   function show(req,res){
-    res.send(`Dettagli dei post` + req.params.id)
+    //res.send(`Dettagli dei post` + req.params.id)
 
     //Recupero dell'id nel file di data (posts.js) e si trasforma in numero con il parseInt
+    
+    const id = parseInt (req.params.id)
 
+    //Ricerca del post tramite il proprio id con il find
+
+    const post = arrayPosts.find (post=>post.id ===id)
+
+    // Controllo in caso l'oggetto non fosse presente
+
+    if(!post){
+        res.status(404);
+        return res.json({
+            status: 404,
+            error: "Not found",
+            message: "Il post cercato non esiste"
+
+        })
+    }
+
+    res.json(post)
     
   };
   
