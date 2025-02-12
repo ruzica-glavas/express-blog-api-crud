@@ -5,7 +5,7 @@ const arrayPosts = require(`../data/posts.js`)
 //Index
 
 function index (req,res){
-    //res.send(`Lista dei post`)
+    //res.send(`Lista dei post`) --> Cancello perché se no, non mi legge il codice
 
     //Logica CRUD per l'index per la restituzione della lista dei post in formato JSON
 
@@ -19,7 +19,7 @@ function index (req,res){
         )
     }
 
-    //restituzione in json
+    //restituzione in json perché sono oggetti
 
     res.json(filteredPost);
   };
@@ -27,7 +27,7 @@ function index (req,res){
   //Show
   
   function show(req,res){
-    //res.send(`Dettagli dei post` + req.params.id)
+    //res.send(`Dettagli dei post` + req.params.id) --> Cancello perché se no, non mi legge il codice
 
     //Recupero dell'id nel file di data (posts.js) e si trasforma in numero con il parseInt
     
@@ -49,6 +49,7 @@ function index (req,res){
         })
     }
 
+    //Restituzione in json perché sono oggetti
     res.json(post)
     
   };
@@ -74,8 +75,45 @@ function index (req,res){
   //Delete (Destroy)
   
   function destroy (req,res){
-    res.send(`Eliminazione dei post` + req.params.id)
+    //res.send(`Eliminazione dei post` + req.params.id) --> Cancello perché se no, non mi legge il codice
+
+    //Recupero dell'id e conversione in numero
+    const id = parseInt (req.params.id)
+
+    //Ricerca del post tramite l'id (con find)
+
+    const post = arrayPosts.find (post=>post.id ===id)
+
+    //Controllo per verificare se l'id del post si trova negli array
+
+    if(!post){
+        res.status(404);
+        return res.json({
+            status: 404,
+            error: "Not found",
+            message: "Il post cercato non esiste"
+
+        })
+    }
+
+
+    //Rimozione del post
+
+    arrayPosts.splice (arrayPosts.indexOf(post), 1)
+
+    
+
+    //Restituzione dello status corretto
+
+        res.sendStatus(204)
+
+        
   };
+  
+console.log(arrayPosts.splice(1))
+ 
+    
+  
   
   //Esportazione dei dati
   module.exports = { index, show, store, update, patch, destroy }
