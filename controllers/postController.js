@@ -15,7 +15,7 @@ function index (req,res){
 
     if (req.query.tags){
         filteredPost = arrayPosts.filter(
-            element => element.tags.includes (req.query.tags)
+            post => post.tags.includes (req.query.tags)
         )
     }
 
@@ -28,6 +28,10 @@ function index (req,res){
   
   function show(req,res){
     res.send(`Dettagli dei post` + req.params.id)
+
+    //Recupero dell'id nel file di data (posts.js) e si trasforma in numero con il parseInt
+
+    
   };
   
   //Create (Store) --> post su Postman
