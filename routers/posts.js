@@ -1,40 +1,32 @@
 const express = require('express')
 const router = express.Router();
 
+//Importazione dei dati nel controller
+
+const { index, show, store, update, patch, destroy }=require(`../controllers/postController`)
+
 //Index
 
-router.get(`/`, function(req,res){
-  res.send(`Lista dei post`)
-});
+router.get(`/`, index);
 
 //Show
 
-router.get(`/:id`, function(req,res){
-  res.send(`Dettagli dei post`)
-});
+router.get(`/:id`, show);
 
 //Create (Store)
 
-router.post(`/`, function(req,res){
-  res.send(`Creazione di nuovi post`)
-});
+router.post(`/`, store);
 
 //Update
 
-router.put(`/:id`, function(req,res){
-  res.send(`Modifica integrale dei post` + req.params.id)
-});
+router.put(`/:id`, update);
 
 //Modify
 
-router.patch(`/:id`, function(req,res){
-  res.send(`Modifica parziale dei post` + req.params.id)
-});
+router.patch(`/:id`, patch);
 
 //Delete (Destroy)
 
-router.delete(`/:id`, function(req,res){
-  res.send(`Eliminazione dei post` + req.params.id)
-});
+router.delete(`/:id`, destroy);
 
 module.exports = router;
