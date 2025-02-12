@@ -1,3 +1,7 @@
+//Importazione del file in data (post.js)
+
+const arrayPosts = require(`../data/posts.js`)
+
 //Index
 
 function index (req,res){
