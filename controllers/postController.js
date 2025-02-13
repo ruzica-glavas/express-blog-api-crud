@@ -59,6 +59,7 @@ function index (req,res){
   function store(req,res){
     //res.send(`Creazione di nuovi post`); --> tolto perché se no, non mi metteva lo status giusto
 
+    //Creazione del nuovo id incrementando l'ultimo id presente
     const newId = arrayPosts[arrayPosts.length - 1].id + 1;
 
     // Creazine di un nuovo oggetto post
