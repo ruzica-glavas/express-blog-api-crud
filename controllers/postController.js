@@ -85,7 +85,33 @@ function index (req,res){
   //Update --> put
   
   function update(req,res){
-    res.send(`Modifica integrale dei post` + req.params.id)
+   // res.send(`Modifica integrale dei post` + req.params.id)
+
+  // recupero dell'id dall' URL e trasformazione in numero
+ const id = parseInt(req.params.id)
+
+ // ricerca del post tramite id
+ const post = arrayPosts.find(post => post.id === id);
+ 
+ // Piccolo controllo
+ if (!post) {
+  res.status(404);
+ return res.json({
+ error: "Not Found",
+ message: "Post non trovato"
+    })
+  }
+ // Aggiornamento del post
+  post.title = req.body.title;
+  post.content = req.body.content;
+  post.image = req.body.image;
+  post.tags = req.body.tags;
+
+ // Controllo dell'arrayPosts
+ console.log(arrayPosts)
+
+ // Restituzione della pizza aggiornata
+  res.json(post);
   };
   
   //Modify --> patch
