@@ -7,12 +7,14 @@ const postsRouter = require('./routers/posts.js'); //l'import della cartella rou
 
 app.use(express.static('public'));
 
+//body-parser
+app.use(express.json());
+
 
 //Indica a express una nuova rotta, in questo caso il prefisso sarà "/posts" e il router postsRouter
 app.use("/posts", postsRouter);
 
-//body-parser
-app.use(express.json());
+
 
 
 

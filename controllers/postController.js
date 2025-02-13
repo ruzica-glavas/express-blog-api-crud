@@ -59,7 +59,6 @@ function index (req,res){
   function store(req,res){
     console.log(req.body);
     res.send(`Creazione di nuovi post`);
-
     
   };
   
