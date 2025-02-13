@@ -2,6 +2,8 @@
 
 const arrayPosts = require(`../data/posts.js`)
 
+
+
 //Index
 
 function index (req,res){
@@ -24,6 +26,8 @@ function index (req,res){
     res.json(filteredPost);
   };
   
+
+
   //Show
   
   function show(req,res){
@@ -53,6 +57,9 @@ function index (req,res){
     res.json(post)
     
   };
+
+
+
   
   //Create (Store) --> post su Postman
   
@@ -62,7 +69,7 @@ function index (req,res){
     //Creazione del nuovo id incrementando l'ultimo id presente
     const newId = arrayPosts[arrayPosts.length - 1].id + 1;
 
-    // Creazine di un nuovo oggetto post
+    // Creazione di un nuovo oggetto post
     const newPost = {
     id: newId,
     title: req.body.title,
@@ -82,10 +89,14 @@ function index (req,res){
     
   };
   
+
+
+  
+
   //Update --> put
   
   function update(req,res){
-   // res.send(`Modifica integrale dei post` + req.params.id)
+   // res.send(`Modifica integrale dei post` + req.params.id) --> tolto per la lettura del codice
 
   // recupero dell'id dall' URL e trasformazione in numero
  const id = parseInt(req.params.id)
@@ -93,7 +104,7 @@ function index (req,res){
  // ricerca del post tramite id
  const post = arrayPosts.find(post => post.id === id);
  
- // Piccolo controllo
+ // Piccolo controllo se il post esiste
  if (!post) {
   res.status(404);
  return res.json({
@@ -114,11 +125,45 @@ function index (req,res){
   res.json(post);
   };
   
+
+
+
   //Modify --> patch
   
   function patch(req,res){
-    res.send(`Modifica parziale dei post` + req.params.id)
+    //res.send(`Modifica parziale dei post` + req.params.id) --> tolto per la lettura del codice
+
+    // recupero dell'id dall' URL e trasformazione in numero
+      const id = parseInt(req.params.id)
+
+ // ricerca del post tramite id
+      const post = arrayPosts.find(post => post.id === id);
+ 
+ // Piccolo controllo se il post esiste
+    if (!post) {
+        res.status(404);
+        return res.json({
+        error: "Not Found",
+        message: "Post non trovato"
+    })
+  }
+ 
+  //Ciclo for in per trovare l'elemento che vogliamo cambiare
+
+  for (let key in req.body){
+    post[key]=req.body[key]
+  }
+
+ // Controllo dell'arrayPosts
+    console.log(arrayPosts)
+
+ // Restituzione della pizza aggiornata
+    res.json(post);
+    
   };
+
+
+
   
   //Delete (Destroy)
   
@@ -143,17 +188,13 @@ function index (req,res){
 
         })
     }
-
-
     //Rimozione del post
 
     arrayPosts.splice (arrayPosts.indexOf(post), 1)
 
-    
-    
     //Restituzione dello status corretto
 
-        res.sendStatus(204)
+      res.sendStatus(204)
 
       //console.log per vedere da terminale il risultato  
       console.log(arrayPosts)
