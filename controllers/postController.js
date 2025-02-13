@@ -57,7 +57,10 @@ function index (req,res){
   //Create (Store) --> post su Postman
   
   function store(req,res){
-    res.send(`Creazione di nuovi post`)
+    console.log(req.body);
+    res.send(`Creazione di nuovi post`);
+
+    
   };
   
   //Update --> put
@@ -102,12 +105,13 @@ function index (req,res){
     arrayPosts.splice (arrayPosts.indexOf(post), 1)
 
     
-    console.log(arrayPosts)
+    
     //Restituzione dello status corretto
 
         res.sendStatus(204)
 
-        
+      //console.log per vedere da terminale il risultato  
+      console.log(arrayPosts)
   };
   
 

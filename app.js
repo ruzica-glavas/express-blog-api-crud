@@ -9,7 +9,12 @@ app.use(express.static('public'));
 
 
 //Indica a express una nuova rotta, in questo caso il prefisso sarà "/posts" e il router postsRouter
-app.use("/posts", postsRouter)
+app.use("/posts", postsRouter);
+
+//body-parser
+app.use(express.json());
+
+
 
 //Attiva il server http:localhost:3000
 app.listen(port, () => {
