@@ -102,7 +102,7 @@ function index (req,res){
     arrayPosts.splice (arrayPosts.indexOf(post), 1)
 
     
-
+    console.log(arrayPosts)
     //Restituzione dello status corretto
 
         res.sendStatus(204)
@@ -110,7 +110,7 @@ function index (req,res){
         
   };
   
-console.log(arrayPosts.splice(1))
+
  
     
   
