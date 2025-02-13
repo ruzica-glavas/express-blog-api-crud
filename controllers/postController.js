@@ -57,8 +57,27 @@ function index (req,res){
   //Create (Store) --> post su Postman
   
   function store(req,res){
-    console.log(req.body);
-    res.send(`Creazione di nuovi post`);
+    //res.send(`Creazione di nuovi post`); --> tolto perché se no, non mi metteva lo status giusto
+
+    const newId = arrayPosts[arrayPosts.length - 1].id + 1;
+
+    // Creazine di un nuovo oggetto post
+    const newPost = {
+    id: newId,
+    title: req.body.title,
+    content: req.body.content,
+    image: req.body.image,
+    tags: req.body.tags
+     }
+    // Aggiungiamo il nuovo post ai posts
+      arrayPosts.push(newPost);
+
+    // controlliamo
+    console.log(arrayPosts);
+
+    // Restituiamo lo status corretto e la pizza appena creata
+     res.status(201);
+     res.json(newPost);
     
   };
   
