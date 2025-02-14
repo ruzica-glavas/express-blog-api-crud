@@ -4,15 +4,14 @@ const port = 3000;
 const postsRouter = require('./routers/posts.js'); //l'import della cartella router
 
 //Importazione dei middlewares
-
 const errorsHandler = require ("./middlewares/errorsHandler.js")
+const notFound = require ("./middlewares/notFound.js")
 
 //Inserire la lettura dei middleware
-
 app.use(errorsHandler);
+app.use (notFound)
 
 //Inserire la lettura della cartella public
-
 app.use(express.static('public'));
 
 

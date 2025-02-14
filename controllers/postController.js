@@ -10,7 +10,6 @@ function index (req,res){
     //res.send(`Lista dei post`) --> Cancello perché se no, non mi legge il codice
 
     //Logica CRUD per l'index per la restituzione della lista dei post in formato JSON
-
     let filteredPost = arrayPosts
 
     //In caso che nella richiesta ci fosse un filtro, si filtrano i post con un if. Il filtro in questo caso é il tag
