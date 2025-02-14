@@ -3,9 +3,18 @@ const app = express();
 const port = 3000;
 const postsRouter = require('./routers/posts.js'); //l'import della cartella router
 
+//Importazione dei middlewares
+
+const errorsHandler = require ("./middlewares/errorsHandler.js")
+
+//Inserire la lettura dei middleware
+
+app.use(errorsHandler);
+
 //Inserire la lettura della cartella public
 
 app.use(express.static('public'));
+
 
 //body-parser
 app.use(express.json());
