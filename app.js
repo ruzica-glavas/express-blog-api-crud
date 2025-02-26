@@ -29,8 +29,8 @@ app.use (notFound);
 
 
 //Attivazione del cors nella porta che ci serve  
-app.listen(80, function () {
-    console.log('CORS-enabled web server listening on port 80')
+app.listen(5173, function () {
+    console.log('CORS-enabled web server listening on port 5173')
   })
 
 //Attiva il server http:localhost:3000
