@@ -12,9 +12,8 @@ const notFound = require ("./middlewares/notFound.js");
 
 //middleware per il cors
 app.use(cors({
-    origin: `http://`*`localhost:5173`
-})
-)
+    origin: `http://`*`localhost:5173`,
+}))
 
 
 //Inserire la lettura della cartella public
