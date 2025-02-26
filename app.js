@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 
-const cors = require('cors')
- // per inserire il cors
+const cors = require('cors')// per inserire il cors
+ 
 const port = 3000;
 const postsRouter = require('./routers/posts.js'); //l'import della cartella router
 
@@ -10,11 +10,11 @@ const postsRouter = require('./routers/posts.js'); //l'import della cartella rou
 const errorsHandler = require ("./middlewares/errorsHandler.js")
 const notFound = require ("./middlewares/notFound.js");
 
-////Attivazione del cors nella porta che ci serve 
-
+//middleware per il cors
 app.use(cors({
-    origin: `http://localhost:5173/`
-}))
+    origin: `http://`*`localhost:5173`
+})
+)
 
 
 //Inserire la lettura della cartella public
