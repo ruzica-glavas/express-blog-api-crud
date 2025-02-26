@@ -10,7 +10,7 @@ const postsRouter = require('./routers/posts.js'); //l'import della cartella rou
 const errorsHandler = require ("./middlewares/errorsHandler.js")
 const notFound = require ("./middlewares/notFound.js");
 
-//middleware per il cors
+//middleware per il cors, l'asterisco significa "accettami qualsiasi locale"
 app.use(cors({
     origin: `http://`*`localhost:5173`,
 }))
